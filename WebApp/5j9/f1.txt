@@ -1,0 +1,1 @@
+Optical Character Recognition reads text from scanned images and converts it into editable text.

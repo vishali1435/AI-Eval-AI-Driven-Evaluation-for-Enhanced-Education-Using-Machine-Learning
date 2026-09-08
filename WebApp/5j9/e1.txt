@@ -1,0 +1,1 @@
+Overfitting is high variance where the model memorizes training samples. Regularization and cross-validation solve it.

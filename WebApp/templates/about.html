@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}About - AI Eval Platform{% endblock %}
+
+{% block content %}
+  <div class="hero-results" style="background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/static/images/bg_1.jpg');">
+    <div class="container text-center text-white py-5">
+      <h1 class="font-weight-bold text-white mb-2">About AI-Eval</h1>
+      <p class="font-size-16 text-muted mb-0" style="color:#ddd !important;">Automated Subjective Answer Sheet Grading via Machine Learning &amp; NLP</p>
+    </div>
+  </div>
+
+  <div class="container py-5">
+    <div class="card border-0 shadow-sm p-4 p-md-5" style="border-radius:12px;">
+      <h3 class="font-weight-bold text-dark mb-3">System Architecture &amp; Methodology</h3>
+      <p class="text-muted leading-relaxed">
+        Examinations play a critical role in universities and educational institutions. Traditional subjective evaluation is manual, tedious, and prone to evaluator subjectivity. <strong>AI-Eval</strong> delivers an end-to-end automated platform that processes scanned handwritten paper sheets, applies Optical Character Recognition (OCR), extracts rich linguistic features, and applies calibrated Machine Learning algorithms to compute accurate and fair grades.
+      </p>
+
+      <div class="row mt-4">
+        <div class="col-md-6 mb-4">
+          <div class="p-3 border rounded">
+            <h5 class="font-weight-bold text-primary">1. OCR Processing</h5>
+            <p class="text-muted font-size-14 mb-0">Scanned student sheets are preprocessed using contrast normalization, grayscale conversions, and Tesseract OCR to digitize handwritten text.</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="p-3 border rounded">
+            <h5 class="font-weight-bold text-success">2. NLP Feature Extraction</h5>
+            <p class="text-muted font-size-14 mb-0">Features include Keyword Matching with WordNet synonym expansion, Semantic Similarity using CountVectorizer &amp; Cosine Similarity, and Grammar analysis.</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="p-3 border rounded">
+            <h5 class="font-weight-bold text-warning">3. Trained ML Scoring</h5>
+            <p class="text-muted font-size-14 mb-0">A machine learning model (Random Forest / Regression) synthesizes multi-dimensional criteria into predicted marks matching pedagogical standards.</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="p-3 border rounded">
+            <h5 class="font-weight-bold text-danger">4. Plagiarism Detection (&le; 50% Cap)</h5>
+            <p class="text-muted font-size-14 mb-0">Cross-submission text similarity analysis prevents cheating while strictly complying with the 50.0% cap on similarity scores.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,1 @@
+Overfitting occurs when a machine learning model learns the training data along with its noise and outliers, resulting in poor generalization to new unseen test data. It can be prevented using techniques such as cross-validation, regularization like L1 and L2 penalty, pruning in decision trees, data augmentation, and dropout in deep neural networks.

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}AI Eval - AI Driven Evaluation for Enhanced Education{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/static/css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/animate.css">
+  <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/static/css/magnific-popup.css">
+  <link rel="stylesheet" href="/static/css/ionicons.min.css">
+  <link rel="stylesheet" href="/static/css/flaticon.css">
+  <link rel="stylesheet" href="/static/css/icomoon.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+
+  <style>
+    :root {
+      --primary-orange: #f38120;
+      --primary-orange-hover: #dc7217;
+      --primary-blue: #007bff;
+      --dark-navy: #1f2833;
+      --soft-bg: #f8f9fa;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+    }
+    .brand-logo {
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      color: #111111;
+      text-transform: uppercase;
+    }
+    .ftco_navbar:not(.scrolled) .brand-logo {
+      color: #ffffff;
+    }
+    .ftco_navbar.scrolled .brand-logo,
+    .page-light-navbar .ftco_navbar .brand-logo {
+      color: #111111 !important;
+    }
+    .btn-orange {
+      background-color: var(--primary-orange);
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn-orange:hover {
+      background-color: var(--primary-orange-hover);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(243, 129, 32, 0.3);
+    }
+
+    /* Floating Chatbot Widget */
+    #chatbot-widget-container {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 10000;
+    }
+    #chatbot-bubble-btn {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    #chatbot-bubble-btn:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+    }
+    #chatbot-window {
+      display: none;
+      width: 360px;
+      height: 480px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      flex-direction: column;
+      overflow: hidden;
+      margin-bottom: 12px;
+      border: 1px solid #e0e0e0;
+      animation: fadeInUp 0.3s ease;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .chat-header {
+      background: #23272b;
+      color: #fff;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--primary-orange);
+    }
+    .chat-header h5 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .chat-body {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      background: #fdfdfd;
+      font-size: 13.5px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .chat-msg {
+      padding: 9px 13px;
+      border-radius: 12px;
+      max-width: 85%;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+    .chat-msg.user {
+      background: #e3f2fd;
+      color: #0d47a1;
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+    }
+    .chat-msg.bot {
+      background: #f1f3f4;
+      color: #202124;
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+      border-left: 3px solid var(--primary-orange);
+    }
+    .chat-footer {
+      padding: 10px 14px;
+      background: #fff;
+      border-top: 1px solid #eaeaea;
+      display: flex;
+      gap: 8px;
+    }
+    .chat-footer input {
+      flex: 1;
+      border: 1px solid #ced4da;
+      border-radius: 20px;
+      padding: 7px 14px;
+      font-size: 13px;
+      outline: none;
+    }
+    .chat-footer button {
+      background: var(--primary-orange);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .alert-fixed {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      z-index: 1050;
+      min-width: 300px;
+    }
+  </style>
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand brand-logo" href="{{ url_for('home') }}">{% block brand_name %}AI-EVAL{% endblock %}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item {% if request.endpoint == 'home' %}active{% endif %}"><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+          <li class="nav-item {% if request.endpoint == 'instructor' %}active{% endif %}"><a href="{{ url_for('instructor') }}" class="nav-link">Instructor</a></li>
+          <li class="nav-item {% if request.endpoint == 'evaluation' %}active{% endif %}"><a href="{{ url_for('evaluation') }}" class="nav-link">Evaluation</a></li>
+          <li class="nav-item {% if request.endpoint == 'about' %}active{% endif %}"><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
+          <li class="nav-item {% if request.endpoint == 'contact' %}active{% endif %}"><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Flash Messages -->
+  <div class="alert-fixed">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category if category != 'message' else 'info' }} alert-dismissible fade show shadow" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- Main Content Block -->
+  {% block content %}{% endblock %}
+
+  <!-- Minimal / Optional Footer Block -->
+  {% block footer %}{% endblock %}
+
+  <!-- Floating Chatbot Widget (Figure 5.5 & Figure 5.2) -->
+  <div id="chatbot-widget-container">
+    <div id="chatbot-window">
+      <div class="chat-header">
+        <h5 style="font-weight:700; font-size:17px; color:#111; margin:0;">Paper Evaluation Chatbot</h5>
+        <button onclick="toggleChatbot()" style="background:none; border:none; color:#555; font-size:22px; cursor:pointer; line-height:1;">&times;</button>
+      </div>
+      <div class="chat-body" id="chat-body" style="background:#fff; border:1px solid #e0e0e0; margin:12px; border-radius:8px; padding:12px; font-size:13px; line-height:1.5; height:280px; overflow-y:auto;">
+        <div style="margin-bottom:10px;">
+          <strong>You:</strong> Why did I get only 2 marks?
+        </div>
+        <div style="margin-bottom:12px;">
+          <strong>Bot:</strong> The evaluation is based on key concepts and clarity. Some important points might have been missing in your answer.
+        </div>
+        <div style="margin-bottom:10px;">
+          <strong>You:</strong> How does the system work?
+        </div>
+        <div style="margin-bottom:12px;">
+          <strong>Bot:</strong> The system uses keyword matching, semantic similarity, and grammar checks to evaluate your answer.
+        </div>
+      </div>
+      <div class="chat-footer" style="padding:10px 14px; background:#fff; border-top:1px solid #eee; display:flex; gap:8px;">
+        <input type="text" id="chat-input" placeholder="Ask something..." onkeypress="handleChatKey(event)" style="flex:1; border:1px solid #ccc; border-radius:4px; padding:6px 12px; font-size:13px; outline:none;" />
+        <button onclick="sendChatMessage()" style="background:#f8f9fa; border:1px solid #ccc; border-radius:4px; padding:6px 14px; font-size:13px; cursor:pointer; font-weight:600;">Send</button>
+      </div>
+    </div>
+    <button id="chatbot-bubble-btn" onclick="toggleChatbot()" style="background:#007bff; color:#fff; border:none; border-radius:30px; padding:10px 22px; font-size:15px; font-weight:600; box-shadow:0 4px 15px rgba(0,123,255,0.35); cursor:pointer; display:flex; align-items:center; gap:8px;">
+      <span style="font-size:16px;">💬</span> Chat with us
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/static/js/popper.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/owl.carousel.min.js"></script>
+  <script src="/static/js/main.js"></script>
+
+  <script>
+    function toggleChatbot() {
+      const win = document.getElementById("chatbot-window");
+      if (win.style.display === "flex") {
+        win.style.display = "none";
+      } else {
+        win.style.display = "flex";
+        document.getElementById("chat-input").focus();
+      }
+    }
+
+    function handleChatKey(e) {
+      if (e.key === 'Enter') {
+        sendChatMessage();
+      }
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById("chat-input");
+      const message = input.value.trim();
+      if (!message) return;
+
+      const chatBody = document.getElementById("chat-body");
+      // Add User message
+      chatBody.innerHTML += `<div class="chat-msg user"><strong>You:</strong> ${message}</div>`;
+      input.value = '';
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: message })
+      })
+      .then(res => res.json())
+      .then(data => {
+        chatBody.innerHTML += `<div class="chat-msg bot"><strong>Bot:</strong> ${data.reply}</div>`;
+        chatBody.scrollTop = chatBody.scrollHeight;
+      })
+      .catch(err => {
+        chatBody.innerHTML += `<div class="chat-msg bot text-danger"><strong>Bot:</strong> Connection error. Please try again.</div>`;
+      });
+    }
+  </script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

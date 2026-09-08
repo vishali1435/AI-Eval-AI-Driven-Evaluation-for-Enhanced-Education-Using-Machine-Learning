@@ -1,0 +1,1 @@
+NLP stands for Natural Language Processing. It processes human language using tokenization and semantic analysis.

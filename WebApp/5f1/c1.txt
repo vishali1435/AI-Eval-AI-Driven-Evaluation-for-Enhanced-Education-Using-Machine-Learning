@@ -1,0 +1,1 @@
+Natural language processing helps computers understand human languages. It involves tokenizing text, removing stop words, and extracting keywords for machine analysis.

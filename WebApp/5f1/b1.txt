@@ -1,0 +1,1 @@
+Supervised learning trains models on labeled training datasets. The model maps input features to target labels. Examples include linear regression and decision trees for classification.

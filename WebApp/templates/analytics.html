@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}Class Analytics & Plagiarism Reports - AI Eval{% endblock %}
+
+{% block extra_css %}
+<style>
+  .hero-analytics {
+    background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/static/images/bg_1.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+  }
+  .analytics-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 26px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+  }
+  .plagiarism-alert-badge {
+    background: #ffebee;
+    color: #c62828;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .cap-notice {
+    background: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-size: 13.5px;
+    margin-bottom: 20px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+  <!-- Analytics Hero Banner -->
+  <section class="hero-analytics">
+    <div class="container">
+      <p class="breadcrumbs mb-2"><span class="mr-2"><a href="{{ url_for('home') }}" class="text-white">Home</a></span> &gt; <span>Analytics</span></p>
+      <h1 class="font-weight-bold mb-0 text-white">Class Analytics &amp; Integrity Reports</h1>
+    </div>
+  </section>
+
+  <div class="container py-5">
+
+    <!-- Overview Metrics Row -->
+    <div class="row mb-4">
+      <div class="col-md-3 mb-3">
+        <div class="card p-3 shadow-sm text-center border-0" style="border-radius:10px;">
+          <h4 class="font-weight-bold text-dark mb-1">{{ total_students }}</h4>
+          <span class="text-muted font-size-13">Total Evaluated Students</span>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="card p-3 shadow-sm text-center border-0" style="border-radius:10px;">
+          <h4 class="font-weight-bold text-success mb-1">{{ "%.1f"|format(class_avg) }}/60</h4>
+          <span class="text-muted font-size-13">Class Average Score</span>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="card p-3 shadow-sm text-center border-0" style="border-radius:10px;">
+          <h4 class="font-weight-bold text-primary mb-1">{{ highest_score|int }}/60</h4>
+          <span class="text-muted font-size-13">Highest Score Achieved</span>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="card p-3 shadow-sm text-center border-0" style="border-radius:10px;">
+          <h4 class="font-weight-bold text-danger mb-1">{{ plagiarism_count }}</h4>
+          <span class="text-muted font-size-13">Plagiarism Flags (&le; 50% Cap)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Question-Wise Performance Distribution -->
+    <div class="analytics-card">
+      <h4 class="font-weight-bold mb-3">Question-Wise Average Performance</h4>
+      <p class="text-muted font-size-14 mb-4">Displays the average score attained by all students across Questions 1 through 6.</p>
+
+      <div class="row">
+        {% for qno in range(1, 7) %}
+          {% set q_avg = q_averages.get(qno, 0.0) %}
+          <div class="col-md-4 col-sm-6 mb-3">
+            <div class="card p-3 border shadow-sm">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="font-weight-bold">Question {{ qno }}</span>
+                <span class="font-weight-bold text-orange" style="color:#f38120;">{{ "%.1f"|format(q_avg) }}/10</span>
+              </div>
+              <div class="progress" style="height: 10px;">
+                <div class="progress-bar" role="progressbar" style="width: {{ (q_avg / 10.0) * 100 }}%; background:#f38120;" aria-valuenow="{{ q_avg }}" aria-valuemin="0" aria-valuemax="10"></div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Plagiarism Detection Matrix (Requirement 4) -->
+    <div class="analytics-card">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="font-weight-bold mb-0">Academic Integrity &amp; Plagiarism Detection</h4>
+        <span class="badge badge-warning py-2 px-3">Capped at 50%</span>
+      </div>
+
+      <div class="cap-notice">
+        <strong>Academic Policy Enforced:</strong> Cross-submission similarity is verified using character n-gram and Jaccard token overlap. In strict accordance with project requirements, the similarity score is capped at <strong>50.0%</strong>.
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th>Student 1 (USN)</th>
+              <th>Student 2 (USN)</th>
+              <th>Question #</th>
+              <th>Similarity Score</th>
+              <th>Cap Applied</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in plagiarism_records %}
+              <tr>
+                <td class="font-weight-bold">{{ p.usn1 }}</td>
+                <td class="font-weight-bold">{{ p.usn2 }}</td>
+                <td>Question {{ p.qno }}</td>
+                <td>
+                  <span class="plagiarism-alert-badge">
+                    {{ "%.1f"|format(p.similarity_pct) }}%
+                  </span>
+                </td>
+                <td><span class="badge badge-success">&le; 50.0% Maximum</span></td>
+                <td>
+                  {% if p.similarity_pct >= 25.0 %}
+                    <span class="text-danger font-weight-bold">Requires Attention</span>
+                  {% else %}
+                    <span class="text-muted">Low Overlap</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% else %}
+              <tr>
+                <td colspan="6" class="text-center text-muted py-4">
+                  No cross-submission plagiarism detected among the currently evaluated scripts.
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock %}

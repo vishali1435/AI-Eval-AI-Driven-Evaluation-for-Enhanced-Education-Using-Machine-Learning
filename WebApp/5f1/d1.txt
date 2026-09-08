@@ -1,0 +1,1 @@
+Convolutional Neural Networks are deep neural networks designed for image recognition, processing visual imagery through convolutional layers.

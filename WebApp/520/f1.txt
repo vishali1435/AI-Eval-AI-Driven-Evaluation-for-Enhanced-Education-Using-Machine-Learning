@@ -1,0 +1,1 @@
+Optical Character Recognition (OCR) is the electronic conversion of images of typed, handwritten, or printed text into machine-encoded text. Tesseract is an open-source OCR engine developed by HP and Google. In automated grading systems, OCR extracts handwritten answers from scanned student papers, enabling NLP algorithms to evaluate content semantics.

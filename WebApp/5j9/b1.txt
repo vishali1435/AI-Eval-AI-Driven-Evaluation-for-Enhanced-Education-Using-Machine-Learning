@@ -1,0 +1,1 @@
+Supervised learning uses labeled inputs and targets. The model learns to predict labels for new inputs.

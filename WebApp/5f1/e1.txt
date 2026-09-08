@@ -1,0 +1,1 @@
+Overfitting happens when a model fits the training set too closely. We prevent overfitting using regularization and dropout.

@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+
+{% block title %}Home - AI Driven Evaluation for Enhanced Education using AI/ML{% endblock %}
+
+{% block brand_name %}HOME{% endblock %}
+
+{% block extra_css %}
+<style>
+  /* Hero Banner matching Figure 5.2 Top & Figure 5.5 */
+  .hero-home {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.15) 100%), url('/static/images/bg_1.jpg');
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 60px 0;
+  }
+  .hero-serif-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 3.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.35;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.45);
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .hero-serif-title {
+      font-size: 2.2rem;
+    }
+  }
+
+  /* Features Section matching Figure 5.2 Bottom */
+  .features-section {
+    padding: 70px 0 80px 0;
+    background: #fafafa;
+  }
+  .features-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #222222;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .double-gold-underline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    margin: 10px auto 45px auto;
+  }
+  .gold-line {
+    width: 60px;
+    height: 2px;
+    background-color: #8c7b44;
+    display: block;
+  }
+  .feature-card-exact {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+    padding: 42px 20px 36px 20px;
+    text-align: center;
+    height: 100%;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .feature-card-exact:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  }
+  .icon-circle-container {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background-color: #f7f3ec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 22px auto;
+  }
+  .feature-card-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #222222;
+    margin-bottom: 12px;
+  }
+  .feature-card-desc {
+    font-size: 0.92rem;
+    color: #777777;
+    line-height: 1.55;
+    margin: 0;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+  <!-- Hero Section (Figure 5.2 Top & Figure 5.5) -->
+  <section class="hero-home">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 col-md-10">
+          <h1 class="hero-serif-title">
+            AI Driven Evaluation for<br>
+            Enhanced Education using<br>
+            AI/ML
+          </h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section (Figure 5.2 Bottom) -->
+  <section class="features-section">
+    <div class="container">
+      
+      <h2 class="features-title">Features</h2>
+      <div class="double-gold-underline">
+        <span class="gold-line"></span>
+        <span class="gold-line"></span>
+      </div>
+
+      <div class="row">
+        <!-- Feature 1: Saves Time -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="feature-card-exact">
+            <div class="icon-circle-container">
+              <!-- Service Desk Bell SVG -->
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#8c7b44" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v3m0 0a7 7 0 0 1 7 7v2H5v-2a7 7 0 0 1 7-7zm-9 11h18a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"/>
+              </svg>
+            </div>
+            <h4 class="feature-card-title">Saves Time</h4>
+            <p class="feature-card-desc">The evaluators have to check n number of answer papers.</p>
+          </div>
+        </div>
+
+        <!-- Feature 2: Saves Energy -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="feature-card-exact">
+            <div class="icon-circle-container">
+              <!-- Food Cloche / Tray with Hand SVG -->
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#8c7b44" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 4a1 1 0 0 1 1-1h0a1 1 0 0 1 1 1v1h-2V4z"/>
+                <path d="M4 14a8 8 0 0 1 16 0H4z"/>
+                <line x1="2" y1="14" x2="22" y2="14"/>
+                <path d="M5 18h14a2 2 0 0 1 2 2v1H3v-1a2 2 0 0 1 2-2z"/>
+              </svg>
+            </div>
+            <h4 class="feature-card-title">Saves Energy</h4>
+            <p class="feature-card-desc">The evaluators have to read through entire answer.</p>
+          </div>
+        </div>
+
+        <!-- Feature 3: Reduces Error -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="feature-card-exact">
+            <div class="icon-circle-container">
+              <!-- Car with Sparkles SVG -->
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#8c7b44" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11"/>
+                <rect x="3" y="11" width="18" height="7" rx="2"/>
+                <circle cx="7" cy="15" r="1.5" fill="#8c7b44"/>
+                <circle cx="17" cy="15" r="1.5" fill="#8c7b44"/>
+                <path d="M4 3l1 1m-1 0l1-1m15-1l1 1m-1 0l1-1"/>
+              </svg>
+            </div>
+            <h4 class="feature-card-title">Reduces Error</h4>
+            <p class="feature-card-desc">The evaluators have to calculate marks manually.</p>
+          </div>
+        </div>
+
+        <!-- Feature 4: Impartial Evaluation -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="feature-card-exact">
+            <div class="icon-circle-container">
+              <!-- Spa Candles / Lotus SVG -->
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#8c7b44" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="6" y="10" width="4" height="10" rx="1"/>
+                <path d="M8 7c.5-1 1-2 0-3-.5 1-1 2 0 3z" fill="#8c7b44"/>
+                <rect x="14" y="8" width="4" height="12" rx="1"/>
+                <path d="M16 5c.5-1 1-2 0-3-.5 1-1 2 0 3z" fill="#8c7b44"/>
+                <ellipse cx="12" cy="20" rx="9" ry="2"/>
+              </svg>
+            </div>
+            <h4 class="feature-card-title">Impartial Evaluation</h4>
+            <p class="feature-card-desc">The evaluation pattern differs from person to person.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+{% endblock %}
